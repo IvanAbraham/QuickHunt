@@ -1,13 +1,11 @@
-# raylib-template
+# QuickHunt
 
-Visual Studio project template for C++ games made with raylib.
+C++ game made with SFML.
 
 ## Requirements
 
 - Visual Studio 2026 (toolset v145) with the "Desktop development with C++" workload
 - Windows x64
-
-raylib 6.2 is included in `lib/`, no extra setup needed.
 
 ## Project structure
 
@@ -28,7 +26,6 @@ raylib 6.2 is included in `lib/`, no extra setup needed.
 | Warning level | 4, treated as errors | 4, treated as errors |
 | C++ standard | C++20 | C++20 |
 
-- raylib is linked statically, no `.dll` needed next to the executable.
 - `src/` is an include directory, so includes don't need relative paths.
 - A post-build step copies `res/` into `bin/<Configuration>/res/`, so the `.exe` runs outside Visual Studio.
 
