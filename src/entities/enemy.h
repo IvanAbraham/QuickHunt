@@ -10,11 +10,11 @@ namespace quickhunt
 		sf::Keyboard::Key requiredKey;
 
 	protected:
-		Enemy(sf::Keyboard::Key);
+		Enemy(sf::Keyboard::Key requiredKey);
 
 	public:
-		bool IsRequiredKey(sf::Keyboard::Key) const;
-		void GetRequiredKey() const;
+		bool IsRequiredKey(sf::Keyboard::Key key) const;
+		sf::Keyboard::Key GetRequiredKey() const;
 
 		virtual void SetPosition(sf::Vector2f position) = 0;
 	};
