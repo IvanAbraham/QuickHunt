@@ -2,5 +2,5 @@
 
 int main()
 {
-	game::Run();
+	quickhunt::Run();
 }

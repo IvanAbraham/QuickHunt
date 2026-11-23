@@ -28,10 +28,3 @@ C++ game made with SFML.
 
 - `src/` is an include directory, so includes don't need relative paths.
 - A post-build step copies `res/` into `bin/<Configuration>/res/`, so the `.exe` runs outside Visual Studio.
-
-## Starting a new project
-
-1. Create a new repository from this template on GitHub (**Use this template**).
-2. Rename `Game.slnx`, `Game.vcxproj`, `Game.vcxproj.filters` and update the project name inside `Game.slnx` and `<RootNamespace>` in `Game.vcxproj`.
-3. Rename the `game` namespace to the project's namespace.
-4. Open the `.slnx`, select **x64**, and build.
