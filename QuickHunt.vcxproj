@@ -13,12 +13,18 @@
   <ItemGroup>
     <ClCompile Include="src\Entities\enemy.cpp" />
     <ClCompile Include="src\Entities\player.cpp" />
+    <ClCompile Include="src\Entities\round_enemy.cpp" />
+    <ClCompile Include="src\Entities\square_enemy.cpp" />
+    <ClCompile Include="src\Entities\triangular_enemy.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities\enemy.h" />
     <ClInclude Include="src\Entities\player.h" />
+    <ClInclude Include="src\Entities\round_enemy.h" />
+    <ClInclude Include="src\Entities\square_enemy.h" />
+    <ClInclude Include="src\Entities\triangular_enemy.h" />
     <ClInclude Include="src\game.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
