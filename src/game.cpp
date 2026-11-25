@@ -14,6 +14,9 @@ namespace quickhunt
     static const sf::Vector2f playerPosition = { 100.0f, 300.0f };
     static const sf::Color playerColor = sf::Color::White;
 
+    static const float roundTime = 2.0f;
+    static const int missDamage = 1;
+
     static const sf::Vector2f queueFrontPosition = { 300.0f, 300.0f };
 
     static sf::RectangleShape CreatePlayerShape()
@@ -25,7 +28,12 @@ namespace quickhunt
         return shape;
     }
 
-    Game::Game() : window(sf::VideoMode({ screenWidth, screenHeight }), windowTitle), player(playerMaxHP, playerAttackCooldown, CreatePlayerShape()), queue(queueFrontPosition)
+    static bool IsGameKey(sf::Keyboard::Key key)
+    {
+        return key == sf::Keyboard::Key::Z || key == sf::Keyboard::Key::X || key == sf::Keyboard::Key::C;
+    }
+
+    Game::Game() : timeLeft(roundTime), score(0), window(sf::VideoMode({ screenWidth, screenHeight }), windowTitle), player(playerMaxHP, playerAttackCooldown, CreatePlayerShape()), queue(queueFrontPosition)
     {
         window.setKeyRepeatEnabled(false);
     }
@@ -47,8 +55,21 @@ namespace quickhunt
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
-            {
                 window.close();
+            
+            if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
+            {
+                sf::Keyboard::Key key = keyPressed->code;
+
+                if (IsGameKey(key) && player.IsAlive() && player.CanAttack())
+                {
+                    player.Attack();
+
+                    if (queue.Front().IsRequiredKey(key))
+                        Hit();
+                    else
+                        Miss();
+                }
             }
         }
     }
@@ -56,6 +77,28 @@ namespace quickhunt
     void Game::Update(float dt)
     {
         player.Update(dt);
+
+        if (player.IsAlive())
+        {
+            timeLeft -= dt;
+            
+            if (timeLeft <= 0.0f)
+                Miss();
+        }
+    }
+
+    void Game::Hit()
+    {
+        queue.KillFront();
+        score++;
+        timeLeft = roundTime;
+    }
+
+    void Game::Miss()
+    {
+        player.TakeDamage(missDamage);
+        queue.KillFront();
+        timeLeft = roundTime;
     }
 
     void Game::Draw()

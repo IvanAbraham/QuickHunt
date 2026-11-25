@@ -18,6 +18,12 @@ namespace quickhunt
 		void Update(float dt);
 		void Draw();
 
+		void Hit();
+		void Miss();
+
+		int score;
+		float timeLeft;
+
 	public:
 		Game();
 		
