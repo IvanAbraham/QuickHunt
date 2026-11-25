@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\enemy.cpp" />
+    <ClCompile Include="src\Entities\enemy_queue.cpp" />
     <ClCompile Include="src\Entities\player.cpp" />
     <ClCompile Include="src\Entities\round_enemy.cpp" />
     <ClCompile Include="src\Entities\square_enemy.cpp" />
@@ -21,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities\enemy.h" />
+    <ClInclude Include="src\Entities\enemy_queue.h" />
     <ClInclude Include="src\Entities\player.h" />
     <ClInclude Include="src\Entities\round_enemy.h" />
     <ClInclude Include="src\Entities\square_enemy.h" />
