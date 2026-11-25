@@ -108,6 +108,36 @@ namespace quickhunt
         window.draw(player);
         window.draw(queue);
 
+        // UI de prueba: fuente temporal de Windows
+        static const sf::Font font("C:/Windows/Fonts/arial.ttf");
+
+        std::string keyName = "C";
+        sf::Color keyColor = sf::Color::Green;
+
+        if (queue.Front().IsRequiredKey(sf::Keyboard::Key::Z))
+        {
+            keyName = "Z";
+            keyColor = sf::Color::Red;
+        }
+        else if (queue.Front().IsRequiredKey(sf::Keyboard::Key::X))
+        {
+            keyName = "X";
+            keyColor = sf::Color::Blue;
+        }
+
+        sf::Text keyText(font, keyName, 80);
+        keyText.setFillColor(keyColor);
+        keyText.setPosition({ 370.0f, 120.0f });
+        window.draw(keyText);
+
+        sf::Text scoreText(font, "Score: " + std::to_string(score), 30);
+        scoreText.setPosition({ 20.0f, 20.0f });
+        window.draw(scoreText);
+
+        sf::Text hpText(font, "HP: " + std::to_string(player.GetHP()), 30);
+        hpText.setPosition({ 20.0f, 60.0f });
+        window.draw(hpText);
+
         window.display();
     }
 }
