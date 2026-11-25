@@ -2,5 +2,7 @@
 
 int main()
 {
-	quickhunt::Run();
+	quickhunt::Game game;
+	
+	game.Run();
 }
