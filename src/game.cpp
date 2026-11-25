@@ -12,8 +12,14 @@ namespace quickhunt
     static const float playerAttackCooldown = 0.2f;
     static const sf::Vector2f playerSize = { 50.0f, 80.0f };
     static const sf::Vector2f playerPosition = { 100.0f, 300.0f };
-    static const sf::Color playerColor = sf::Color::White;
+    static const sf::Color playerColor = sf::Color::Cyan;
 
+    static const sf::Vector2f timerBarSize = { 300.0f, 20.0f };
+    static const sf::Vector2f timerBarPosition = { 250.0f, 10.0f };
+    static const sf::Color timerBarColor = sf::Color::White;
+    static const sf::Color lowTimeBarColor = sf::Color::Red;
+
+    static const float lowTimeUmbral = 0.5f;
     static const float roundTime = 2.0f;
     static const int missDamage = 1;
 
@@ -89,10 +95,15 @@ namespace quickhunt
         if (player.IsAlive())
         {
             timeLeft -= dt;
-            
+
             if (timeLeft <= 0.0f)
                 Miss();
         }
+    }
+
+    bool Game::LowTime() const
+    {
+        return timeLeft < lowTimeUmbral;
     }
 
     void Game::Hit()
@@ -146,11 +157,17 @@ namespace quickhunt
         hpText.setPosition({ 20.0f, 60.0f });
         window.draw(hpText);
 
+        sf::RectangleShape timerBar({ timerBarSize.x * (timeLeft / roundTime), timerBarSize.y });
+        timerBar.setPosition(timerBarPosition);
+        timerBar.setFillColor(LowTime()? lowTimeBarColor : timerBarColor);
+        window.draw(timerBar);
+
         if (!player.IsAlive())
         {
 
             sf::Text gameOverText(font, "GAME OVER \nFINAL SCORE: " + std::to_string(score) + "\nPRESS R TO RESTART" + "\nESC TO EXIT", 70);
             gameOverText.setPosition({ 10.0f, 120.0f });
+            gameOverText.setFillColor(sf::Color::White);
             window.draw(gameOverText);
         }
 

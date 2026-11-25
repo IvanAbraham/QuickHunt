@@ -22,6 +22,8 @@ namespace quickhunt
 		void Hit();
 		void Miss();
 
+		bool LowTime() const;
+
 		int score;
 		float timeLeft;
 
