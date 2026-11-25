@@ -17,6 +17,7 @@ namespace quickhunt
 		void HandleEvents();
 		void Update(float dt);
 		void Draw();
+		void Restart();
 
 		void Hit();
 		void Miss();

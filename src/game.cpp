@@ -70,6 +70,14 @@ namespace quickhunt
                     else
                         Miss();
                 }
+                else if (!player.IsAlive())
+                {
+                    if (key == sf::Keyboard::Key::R)
+                        Restart();
+
+                    else if (key == sf::Keyboard::Key::Escape)
+                        window.close();
+                }
             }
         }
     }
@@ -138,6 +146,22 @@ namespace quickhunt
         hpText.setPosition({ 20.0f, 60.0f });
         window.draw(hpText);
 
+        if (!player.IsAlive())
+        {
+
+            sf::Text gameOverText(font, "GAME OVER \nFINAL SCORE: " + std::to_string(score) + "\nPRESS R TO RESTART" + "\nESC TO EXIT", 70);
+            gameOverText.setPosition({ 10.0f, 120.0f });
+            window.draw(gameOverText);
+        }
+
         window.display();
+    }
+
+    void Game::Restart()
+    {
+        queue.Reset();
+        score = 0;
+        timeLeft = roundTime;
+        player.RevivePlayer();
     }
 }
